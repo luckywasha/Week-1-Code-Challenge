@@ -1,0 +1,72 @@
+function calculatePayroll(basicSalary) {
+  // PAYE calculation
+  let annualTaxablePay = basicSalary * 12;
+  let paye = 0;
+  if (annualTaxablePay <= 288000) {
+    paye = annualTaxablePay * 0.1 / 12;
+  } else if (annualTaxablePay <= 388000) {
+    paye = 24000 * 0.1 + (annualTaxablePay - 24000) * 0.25 / 12;
+  } else {
+    paye = 24000 * 0.1 + 8332.5 + (annualTaxablePay - 32000) * 0.3 / 12;
+  }
+
+  // NHIF calculation
+  let nhif = 0;
+  if (basicSalary <= 5999) {
+    nhif = 150;
+  } else if (basicSalary <= 7999) {
+    nhif = 300;
+  } else if (basicSalary <= 11999) {
+    nhif = 400;
+  } else if (basicSalary <= 14999) {
+    nhif = 500;
+  } else if (basicSalary <= 19999) {
+    nhif = 600;
+  } else if (basicSalary <= 24999) {
+    nhif = 750;
+  } else if (basicSalary <= 29999) {
+    nhif = 850;
+  } else if (basicSalary <= 34999) {
+    nhif = 900;
+  } else if (basicSalary <= 39999) {
+    nhif = 950;
+  } else if (basicSalary <= 44999) {
+    nhif = 1000;
+  } else if (basicSalary <= 49999) {
+    nhif = 1100;
+  } else if (basicSalary <= 59999) {
+    nhif = 1200;
+  } else if (basicSalary <= 69999) {
+    nhif = 1300;
+  } else if (basicSalary <= 79999) {
+    nhif = 1400;
+  } else if (basicSalary <= 89999) {
+    nhif = 1500;
+  } else if (basicSalary <= 99999) {
+    nhif = 1600;
+  } else {
+    nhif = 1700;
+  }
+
+  // NSSF calculation
+  let nssf = 0;
+  if (basicSalary <= 6000) {
+    nssf = basicSalary * 0.06;
+  } else if (basicSalary <= 18000) {
+    nssf = 1080;
+  } else {
+    nssf = 1800;
+  }
+
+  // Net Salary calculation
+  let totalDeductions = paye + nhif + nssf;
+  let netSalary = basicSalary - totalDeductions;
+
+  console.log(`Basic Salary: ${basicSalary}`);
+  console.log(`PAYE: ${paye.toFixed(2)}`);
+  console.log(`NHIF: ${nhif.toFixed(2)}`);
+  console.log(`NSSF: ${nssf.toFixed(2)}`);
+  console.log(`Net Salary: ${netSalary.toFixed(2)}`);
+}
+
+calculatePayroll(250000); // Replace with your desired basic salary
